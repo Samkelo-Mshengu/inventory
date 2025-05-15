@@ -1,82 +1,79 @@
-
-form.ion-padding {
-  max-width: 600px; 
-  margin: auto; 
+:root {
+  --ion-color-primary: #7e57c2;
+  --ion-color-primary-rgb: 126, 87, 194;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #6f4db0;
+  --ion-color-primary-tint: #8b6bc9;
 }
 
-
-ion-input {
-  --padding-start: 8px;
-  --padding-end: 8px; 
-  --border-radius: 8px; 
+.add-product-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  background: #f8f8ff;
 }
 
+.custom-card {
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.2);
+  margin-bottom: 20px;
+  background: #ffffff;
+}
 
+ion-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+
+ion-item {
+  --highlight-color-focused: var(--ion-color-primary);
+  --border-radius: 10px;
+  margin-top: 10px;
+}
+
+ion-input,
 ion-textarea {
-  --padding-start: 8px; 
-  --padding-end: 8px; 
-  --border-radius: 8px; 
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --border-radius: 8px;
 }
-
-
-input[type="file"] {
-  display: block; 
-  margin: 10px 0; 
-  color: #387ef5;
-}
-
-
-.icon {
-  font-size: 30px; 
-  color: #387ef5; 
-  margin-left: 10px;
-  vertical-align: middle; 
-}
-
 
 ion-button {
-  --background: #3880ff; 
-  --background-activated: #3dc2ff; 
-  --border-radius: 20px; 
-  margin-top: 20px; 
+  margin-top: 20px;
+  --border-radius: 25px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
+.image-upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
 
-.ion-padding {
-  padding-bottom: 10px;
+.preview-img {
+  width: 90%;
+  max-width: 350px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .capture-label {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  color: #333;
+  font-size: 16px;
+  color: #5a5a5a;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .camera-icon {
-  margin-left: 5px;
-  font-size: 40px;
-}
-img{
-  height: 150px;
-  width: 350px;
-  text-align: center;
-}
-
-ion-card {
-  --background: #fff; 
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-}
-
-ion-card-title {
-  color: var(--ion-color-primary); 
-}
-ion-content {
-  --padding-start: 20px;
-  --padding-end: 20px;
-  --padding-top: 20px;
-  --padding-bottom: 20px;
+  font-size: 36px;
+  margin-right: 8px;
+  color: var(--ion-color-primary);
 }

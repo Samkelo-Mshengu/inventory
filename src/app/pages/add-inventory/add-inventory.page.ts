@@ -20,7 +20,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
     templateUrl: './add-inventory.page.html',
     styleUrls: ['./add-inventory.page.scss'],
   })
-  export class AddInventoryPage{
+  export class AddInventoryPage{ 
   
     isLoading: boolean = false;
     currentDate: Date = new Date();
@@ -43,6 +43,8 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
     description: string;
     previewImage:any;
     imageSource:any;
+    price: number;
+category: string;
   
     constructor(
       private db: AngularFirestore,
@@ -114,12 +116,13 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
         }
 
         const newItem = {
-            partNumber: partNumber,
-            capturedPhotosUrl: imageUrl,
-            itemName: this.itemName,
-            quantity: this.quantity,
-            size: this.size,
-            description: this.description,
+           partNumber: partNumber,
+  capturedPhotosUrl: imageUrl,
+  itemName: this.itemName,
+  quantity: this.quantity,
+  price: this.price,
+  category: this.category,
+  dateAdded: currentDate.toISOString()
         };
 
         let inventory = this.inventories.find(inv => inv.employeeNumber === this.employeeNumber);
@@ -214,18 +217,17 @@ async addOrdersToFirestore(inventories) {
   
     
   allInputsFilled(): boolean {
-    return !!this.itemName && !!this.quantity && !!this.size && !!this.description && !!this.imageSource &&
-          !!this.employeeNumber && !!this.empName&& !!this.contactNo;
-  }
+  return !!this.itemName && !!this.quantity && !!this.price && !!this.category && !!this.imageSource &&
+        !!this.employeeNumber && !!this.empName && !!this.contactNo;
+}
   
   clearFields() {
-    this.itemName = '';
-    this.quantity = null;
-    this.size = '';
-    this.description = '';
-    // this.barCode='';
-    this.imageSource='';
-  }
+  this.itemName = '';
+  this.quantity = null;
+  this.price = null;
+  this.category = '';
+  this.imageSource = '';
+}
 
  
 }

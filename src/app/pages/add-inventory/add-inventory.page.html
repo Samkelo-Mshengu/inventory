@@ -1,81 +1,71 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>NEW INVENTORY</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding add-product-content">
+  <!-- Store Manager Section -->
+  <ion-card class="custom-card">
+    <ion-card-header>
+      <ion-card-title>Store Manager Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Name & Surname</ion-label>
+        <ion-input [(ngModel)]="empName" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Employee Number</ion-label>
+        <ion-input [(ngModel)]="employeeNumber" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contact Number</ion-label>
+        <ion-input [(ngModel)]="contactNo" type="tel" (ionChange)="validatePhoneNumber()"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="contactNo && !validatePhoneNumber()">
+        Enter a valid cellphone number
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
 
-<ion-content>
-      <!-- Delivery Guy Details Section -->
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Driver Details</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-item>
-            <ion-label position="floating">Name & Surname</ion-label>
-            <ion-input [(ngModel)]="empName" type="text"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Emp number</ion-label>
-            <ion-input [(ngModel)]="employeeNumber" type="number"></ion-input>
-          </ion-item>
-          <!-- <ion-item>
-            <ion-label position="floating">Company</ion-label>
-            <ion-input [(ngModel)]="companyName" type="text"></ion-input>
-          </ion-item> -->
-          <ion-item>
-            <ion-label position="floating">Contact Number</ion-label>
-            <ion-input [(ngModel)]="contactNo" type="tel" (ionChange)="validatePhoneNumber()"></ion-input>
-          </ion-item>
+  <!-- Product Section -->
+  <ion-card class="custom-card">
+    <ion-card-header>
+      <ion-card-title>Add Product</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Item Name</ion-label>
+        <ion-input [(ngModel)]="itemName" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Quantity</ion-label>
+        <ion-input [(ngModel)]="quantity" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Price (ZAR)</ion-label>
+        <ion-input [(ngModel)]="price" type="number" step="0.01"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Category</ion-label>
+        <ion-input [(ngModel)]="category" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date Added</ion-label>
+        <ion-text>{{ currentDate | date: 'medium' }}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-          <ion-item *ngIf="contactNo && !validatePhoneNumber()">
-            <ion-label color="danger" stacked>Enter a valid cellphone number</ion-label>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-  
-      <!-- Delivery Item Details Section -->
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Add Inventory</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <!-- <ion-item>
-            <ion-label position="floating">Bar Code</ion-label>
-            <ion-input [(ngModel)]="barCode" type="number"></ion-input>
-          </ion-item> -->
-          <ion-item>
-            <ion-label position="floating">Item Name</ion-label>
-            <ion-input [(ngModel)]="itemName" type="text"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Quantity</ion-label>
-            <ion-input [(ngModel)]="quantity" type="number"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Size</ion-label>
-            <ion-input [(ngModel)]="size" type="text"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Description</ion-label>
-            <ion-textarea [(ngModel)]="description"></ion-textarea>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-  
+  <!-- Image Upload Section -->
+  <div class="image-upload-section">
+    <img [src]="previewImage" *ngIf="previewImage" class="preview-img" />
+    <label class="capture-label" *ngIf="!imageSource">
+      <ion-icon name="camera-outline" (click)="takePhoto()" class="camera-icon"></ion-icon>
+      <span>Capture Product Photo</span>
+    </label>
+  </div>
 
-
-      <div id="mo">
-        <img [src]="previewImage" style="width: 400px;" *ngIf="previewImage" />
-        <label class="capture-label" *ngIf="!imageSource">
-          Capture picture
-          <ion-icon name="camera-outline" (click)="takePhoto()" class="camera-icon"></ion-icon>
-        </label>
-      </div>
-
-      <ion-button expand="block" (click)="submit()" [disabled]="submitDisabled()">Add Item</ion-button>
-      <div>
-        <ion-button expand="block" (click)="addOrdersToFirestore(inventories)" >Done</ion-button>
-      </div>
-  
+  <!-- Action Buttons -->
+  <ion-button expand="block" color="primary" (click)="submit()" [disabled]="submitDisabled()">
+    Add Product
+  </ion-button>
+  <ion-button expand="block" fill="outline" color="primary" (click)="addOrdersToFirestore(inventories)">
+    Done
+  </ion-button>
 </ion-content>
